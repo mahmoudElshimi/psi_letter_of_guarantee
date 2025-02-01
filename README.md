@@ -53,6 +53,12 @@ To install the Psi Letter of Guarantee module, follow these steps:
 3. **Install the Module:**
 
    Find *Psi Letter of Guarantee* in the Apps menu and click *Install*.
+   
+# *Odoo Apps Store:*
+
+ Alternatively, you can install the module directly from the Odoo Apps Store:
+ [Rusetta Assist on Odoo Apps](https://apps.odoo.com/apps/modules/18.0/psi_letter_of_guarantee)
+
 
 ## Links
 
