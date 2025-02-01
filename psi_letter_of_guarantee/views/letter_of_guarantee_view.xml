@@ -1,0 +1,123 @@
+<odoo>
+    <record id="action_letter_of_guarantee" model="ir.actions.act_window">
+        <field name="name">Letters of Guarantee</field>
+        <field name="res_model">letter.of.guarantee</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_letter_of_guarantee_form" model="ir.ui.view">
+        <field name="name">letter.of.guarantee.form</field>
+        <field name="model">letter.of.guarantee</field>
+        <field name="arch" type="xml">
+            <form string="Letter of Guarantee">
+                <sheet>
+		   <header>
+                        <field name="status" widget="statusbar" statusbar_visible="active,expired"/>
+                    </header>
+                    <group>
+                        <field name="name"/>
+                        <field name="partner_id" widget="many2one_tags"/>
+			<field name="journal_id" widget="many2one_tags" domain="[('type', '=', 'bank')]" string="Journal"/>
+			<field name="bank_id" readonly="1" string="Bank"/>
+			<!-- Bank Account Field -->
+                        <field name="bank_account_id" readonly="1" visibility="invisible_if:journal_id == False"/>
+                        <!-- Default Account Field -->
+                        <field name="default_account_id" readonly="1" visibility="invisible_if:journal_id == False" string="Account"/>
+                        <field name="amount"  decoration-danger="amount &lt; 1"/>
+                        <field name="interest"  decoration-danger="amount &lt; 1"/>
+                        <field name="issuance_fees"  decoration-danger="amount &lt; 1"/>
+                        <field name="feedback"/>
+                        <field name="issue_date"/>
+                        <field name="expiry_date"/>
+                        <field name="log_type"/>
+                    </group>
+                </sheet>
+                <sheet>
+			<group>
+                        <field name="pdf_file" filename="pdf_file_name" widget="binary"/>
+			<field name="tag_ids" widget="many2many_tags" placeholder="Select Tags"/>
+			<field name="created_date" readonly="1"/>
+			<field name="created_by" readonly="1"/>
+                        <field name="description"/>
+			</group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_letter_of_guarantee_list" model="ir.ui.view">
+        <field name="name">letter_of_guarantee.list</field>
+        <field name="model">letter.of.guarantee</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="bank_id"/>
+                <field name="bank_account_id"/>
+                <field name="amount"/>
+                <field name="expiry_date"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+
+<record id="view_letter_of_guarantee_search" model="ir.ui.view">
+    <field name="name">letter.of.guarantee.search</field>
+    <field name="model">letter.of.guarantee</field>
+    <field name="arch" type="xml">
+        <search string="Search Letters of Guarantee">
+            <!-- Search Fields -->
+            <field name="name" string="Reference"/>
+            <field name="partner_id" string="Partner"/>
+            <field name="journal_id" string="Journal"/>
+            <field name="bank_id" string="Bank"/>
+            <field name="bank_account_id" string="Bank Account"/>
+            <field name="default_account_id" string="Account"/>
+            <field name="amount" string="Amount"/>
+            <field name="issuance_fees" string="Issuance Fees"/>
+            <field name="interest" string="Interest"/>
+            <field name="feedback" string="Bank Feedback"/>
+            <field name="issue_date" string="Issue Date"/>
+            <field name="expiry_date" string="Expiry Date"/>
+            <field name="status" string="Status"/>
+            <field name="log_type" string="Type"/>
+            <field name="tag_ids" string="Tags"/>
+            <field name="created_date" string="Created Date"/>
+            <field name="created_by" string="Created By"/>
+            
+            <!-- Predefined Filters -->
+            <filter string="Active Guarantees" name="filter_active" domain="[('status', '=', 'active')]"/>
+            <filter string="Expired Guarantees" name="filter_expired" domain="[('status', '=', 'expired')]"/>
+            <filter string="Approved Feedback" name="filter_feedback_approved" domain="[('feedback', '=', 'approved')]"/>
+            <filter string="Rejected Feedback" name="filter_feedback_rejected" domain="[('feedback', '=', 'rejected')]"/>
+            <filter string="Under Examination" name="filter_feedback_under_examination" domain="[('feedback', '=', 'under_examination')]"/>
+            <filter string="Primary Type" name="filter_primary" domain="[('log_type', '=', 'primary')]"/>
+            <filter string="Final Type" name="filter_final" domain="[('log_type', '=', 'final')]"/>
+            <filter string="Tags Available" name="filter_with_tags" domain="[('tag_ids', '!=', False)]"/>
+            <filter string="No Tags" name="filter_no_tags" domain="[('tag_ids', '=', False)]"/>
+            
+            <!-- Group By Options -->
+            <group expand="1" string="Group By">
+                <filter string="Reference" name="group_by_name" context="{'group_by': 'name'}"/>
+                <filter string="Partner" name="group_by_partner" context="{'group_by': 'partner_id'}"/>
+                <filter string="Journal" name="group_by_journal" context="{'group_by': 'journal_id'}"/>
+                <filter string="Bank" name="group_by_bank" context="{'group_by': 'bank_id'}"/>
+                <filter string="Bank Account" name="group_by_bankAccount" context="{'group_by': 'bank_account_id'}"/>
+                <filter string="Account" name="group_by_account" context="{'group_by': 'default_account_id'}"/>
+                <filter string="Status" name="group_by_status" context="{'group_by': 'status'}"/>
+                <filter string="Bank Feedback" name="group_by_feedback" context="{'group_by': 'feedback'}"/>
+                <filter string="Type" name="group_by_type" context="{'group_by': 'log_type'}"/>
+                <filter string="Tags" name="group_by_tags" context="{'group_by': 'tag_ids'}"/>
+                <filter string="Created By" name="group_by_created_by" context="{'group_by': 'created_by'}"/>
+                <filter string="Created Date" name="group_by_created_date" context="{'group_by': 'created_date'}"/>
+                <filter string="Issue Date" name="group_by_issue_date" context="{'group_by': 'issue_date'}"/>
+                <filter string="Expiry Date" name="group_by_expiry_date" context="{'group_by': 'expiry_date'}"/>
+            </group>
+        </search>
+    </field>
+</record>
+
+ 
+</odoo>

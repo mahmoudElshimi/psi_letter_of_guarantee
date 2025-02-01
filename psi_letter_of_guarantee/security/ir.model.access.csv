@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_letter_of_guarantee,access_letter_of_guarantee,model_letter_of_guarantee,,1,1,1,1
+access_log_tag,access_log_tag,model_log_tag,,1,1,1,1

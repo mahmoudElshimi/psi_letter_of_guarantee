@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_letter_of_guarantee_report" model="ir.actions.report">
+        <field name="name">Letter of Guarantee</field>
+        <field name="model">letter.of.guarantee</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">psi_letter_of_guarantee.letter_of_guarantee_report_template</field>
+        <field name="report_file">psi_letter_of_guarantee.letter_of_guarantee_report_template</field>
+        <field name="binding_type">report</field>
+        <field name="binding_model_id" ref="model_letter_of_guarantee"/>
+        <field name="print_report_name">'Letter of Guarantee - %s' % (object.name)</field>
+    </record>
+
+    <record id="model_letter_of_guarantee" model="ir.model">
+        <field name="name">Letter of Guarantee</field>
+        <field name="model">letter.of.guarantee</field>
+    </record>
+</odoo>
+
