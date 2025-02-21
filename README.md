@@ -27,7 +27,7 @@ This module is actively being developed and improved. Contributions, feedback, a
 
    ![Reports](./psi_letter_of_guarantee/static/description/images/reports_many.png)
 
-4. Reporting For Doc
+4. Reporting For a Record
 
    ![Reports](./psi_letter_of_guarantee/static/description/images/reports_one.png)
 ## Installation
