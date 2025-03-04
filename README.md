@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to the Psi Letter of Guarantee Odoo module! 🚀
+Welcome to the Psi Letter of Guarantee Odoo module!
 
 This module is designed to streamline the management of letters of guarantee in Odoo. It provides features to handle:
 
@@ -11,7 +11,7 @@ This module is designed to streamline the management of letters of guarantee in 
 - Fee management and reporting.
 
 ### Note:
-This module is actively being developed and improved. Contributions, feedback, and suggestions are highly welcome! Remember: RTFM (Read The F*cking Manual) and KISS (Keep It Simple, Stupid!). 😊
+This module is actively being developed and improved. Contributions, feedback, and suggestions are highly welcome! Remember: RTFM (Read The F*cking Manual) and KISS (Keep It Simple, Stupid!).
 
 ## Screenshots
 
@@ -67,5 +67,4 @@ To install the Psi Letter of Guarantee module, follow these steps:
 
 ## How to Contribute
 
-Feel free to fork this repository, raise issues, and create pull requests. All contributions are welcome, following the RTFM and KISS principles! 🚀
-
+Feel free to fork this repository, raise issues, and create pull requests. All contributions are welcome, following the RTFM and KISS principles!
