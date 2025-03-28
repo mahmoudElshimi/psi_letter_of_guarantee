@@ -11,14 +11,15 @@ class LetterOfGuarantee(models.Model):
         ("unique_name", "unique(name)", "The Reference (name) must be unique.")
     ]
 
-    partner_id = fields.Many2one("res.partner", string="Partner", required=True)
-    journal_id = fields.Many2one("account.journal", string="Journal", required=True)
+    partner_id = fields.Many2one("res.partner", string="Partner", required=True, ondelete="restrict")
+    journal_id = fields.Many2one("account.journal", string="Journal", required=True, ondelete="restrict")
     bank_id = fields.Many2one(
         "res.bank",
         string="Bank",
         related="journal_id.bank_id",
         readonly=True,
-        store=True,  # Optional: Store if you need it for filtering or grouping
+        store=True,  
+        ondelete="restrict",
     )
 
     amount = fields.Float(string="Amount", required=True, tracking=True)
@@ -68,12 +69,14 @@ class LetterOfGuarantee(models.Model):
         string="Bank Account",
         related="journal_id.bank_account_id",
         store=True,
+        ondelete="restrict",
     )
     default_account_id = fields.Many2one(
         "account.account",
         string="Default Account",
         related="journal_id.default_account_id",
         store=True,
+        ondelete="restrict",
     )
 
     def copy(self, default=None):
@@ -135,18 +138,3 @@ class LetterOfGuarantee(models.Model):
                     "The Expiry Date must be later than the Issue Date."
                 )
 
-
-"""
-bank_account_id = fields.Many2one(
-    'res.partner.bank',
-    string='Bank Account',
-    related='journal_id.bank_account_id',
-    store=True
-)
-default_account_id = fields.Many2one(
-    'account.account',
-    string='Default Account',
-    related='journal_id.default_account_id',
-    store=True
-)
-"""
