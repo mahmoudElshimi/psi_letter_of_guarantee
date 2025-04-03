@@ -38,13 +38,20 @@ class LetterOfGuarantee(models.Model):
         default=lambda self: self.env.user,
         readonly=True,
     )
+
+    canceled_by = fields.Many2one(
+        "res.users",
+        string="Canceled By",
+        default= None,
+        readonly=True,
+    )
     issue_date = fields.Date(string="Issue Date", required=True, tracking=True)
     expiry_date = fields.Date(string="Expiry Date", required=True, tracking=True)
-    status = fields.Selection(
+    state = fields.Selection(
         [("active", "Active"), ("expired", "Expired"), ("canceled", "Canceled")],
-        string="Status",
+        string="State",
         default="active",
-        compute="_compute_status",
+        compute="_compute_state",
         store=True,
         readonly=True,
         tracking=True,
@@ -86,9 +93,18 @@ class LetterOfGuarantee(models.Model):
     def copy(self, default=None):
         if default is None:
             default = {}
-        # Clear the 'name' field for the duplicate
+        # Clear the "name" and "canceled_by" for the duplicate
         default["name"] = ""
+        default["canceled_by"] = None
         return super(LetterOfGuarantee, self).copy(default)
+
+    def action_canceled(self):
+        for record in self:
+            record.write({
+                "state": "canceled",
+                "canceled_by": self.env.user.id, 
+            })
+
 
     @api.onchange("journal_id")
     def _onchange_journal_id(self):
@@ -105,17 +121,17 @@ class LetterOfGuarantee(models.Model):
             self.bank_account_id = False
 
     @api.depends("expiry_date")
-    def _compute_status(self):
+    def _compute_state(self):
         for record in self:
-            if record.status == "canceled":
+            if record.state== "canceled":
                 pass
-            elif record.expiry_date and record.expiry_date <= fields.Date.today() and record.status != "canceled":
-                record.status = "expired"
+            elif record.expiry_date and record.expiry_date <= fields.Date.today() and record.state != "canceled":
+                record.state = "expired"
             else:
-                record.status = "active"
+                record.state = "active"
 
     @api.constrains("amount", "issuance_fees", "interest")
-    def _check_amount(self):
+    def _check_value(self):
         for record in self:
             if record.amount <= 0:
                 raise ValidationError("The amount must be greater than zero.")

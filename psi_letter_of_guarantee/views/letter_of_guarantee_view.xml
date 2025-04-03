@@ -12,8 +12,8 @@
             <form string="Letter of Guarantee">
                 <sheet>
 		   <header>
-                        <!-- <field name="status" widget="statusbar" statusbar_visible="active,expired"/ -->
-                        <field name="status" widget="statusbar" statusbar_visible="active,expired"/>
+			<button name="action_canceled" type="object" class="btn-primary" string="Cancel" invisible="state =='canceled'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="active,expired"/>
                     </header>
 			<div class="oe_title">
 				<label for="name"/>
@@ -44,6 +44,7 @@
 			<field name="tag_ids" widget="many2many_tags" placeholder="Select Tags"/>
 			<field name="created_date" readonly="1"/>
 			<field name="created_by" readonly="1"/>
+			<field name="canceled_by" readonly="1" invisible="state != 'canceled'"/> 
                         <field name="description"/>
 			</group>
                 </sheet>
@@ -63,7 +64,7 @@
                 <field name="bank_account_id"/>
                 <field name="amount"/>
                 <field name="expiry_date"/>
-                <field name="status"/>
+                <field name="state"/>
             </list>
         </field>
     </record>
@@ -87,15 +88,17 @@
             <field name="feedback" string="Bank Feedback"/>
             <field name="issue_date" string="Issue Date"/>
             <field name="expiry_date" string="Expiry Date"/>
-            <field name="status" string="Status"/>
+            <field name="state" string="State"/>
             <field name="log_type" string="Type"/>
             <field name="tag_ids" string="Tags"/>
             <field name="created_date" string="Created Date"/>
             <field name="created_by" string="Created By"/>
+            <field name="canceled_by" string="Canceled By"/>
             
             <!-- Predefined Filters -->
-            <filter string="Active Guarantees" name="filter_active" domain="[('status', '=', 'active')]"/>
-            <filter string="Expired Guarantees" name="filter_expired" domain="[('status', '=', 'expired')]"/>
+            <filter string="Active Guarantees" name="filter_active" domain="[('state', '=', 'active')]"/>
+            <filter string="Expired Guarantees" name="filter_expired" domain="[('state', '=', 'expired')]"/>
+            <filter string="Canceled Guarantees" name="filter_canceled" domain="[('state', '=', 'canceled')]"/>
             <filter string="Approved Feedback" name="filter_feedback_approved" domain="[('feedback', '=', 'approved')]"/>
             <filter string="Rejected Feedback" name="filter_feedback_rejected" domain="[('feedback', '=', 'rejected')]"/>
             <filter string="Under Examination" name="filter_feedback_under_examination" domain="[('feedback', '=', 'under_examination')]"/>
@@ -112,11 +115,12 @@
                 <filter string="Bank" name="group_by_bank" context="{'group_by': 'bank_id'}"/>
                 <filter string="Bank Account" name="group_by_bankAccount" context="{'group_by': 'bank_account_id'}"/>
                 <filter string="Account" name="group_by_account" context="{'group_by': 'default_account_id'}"/>
-                <filter string="Status" name="group_by_status" context="{'group_by': 'status'}"/>
+                <filter string="State" name="group_by_state" context="{'group_by': 'state'}"/>
                 <filter string="Bank Feedback" name="group_by_feedback" context="{'group_by': 'feedback'}"/>
                 <filter string="Type" name="group_by_type" context="{'group_by': 'log_type'}"/>
                 <filter string="Tags" name="group_by_tags" context="{'group_by': 'tag_ids'}"/>
                 <filter string="Created By" name="group_by_created_by" context="{'group_by': 'created_by'}"/>
+                <filter string="Canceled By" name="group_by_canceled_by" context="{'group_by': 'canceled_by'}"/>
                 <filter string="Created Date" name="group_by_created_date" context="{'group_by': 'created_date'}"/>
                 <filter string="Issue Date" name="group_by_issue_date" context="{'group_by': 'issue_date'}"/>
                 <filter string="Expiry Date" name="group_by_expiry_date" context="{'group_by': 'expiry_date'}"/>
