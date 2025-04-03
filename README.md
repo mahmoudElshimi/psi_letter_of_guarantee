@@ -13,6 +13,10 @@ This module is designed to streamline the management of letters of guarantee in 
 ### Note:
 This module is actively being developed and improved. Contributions, feedback, and suggestions are highly welcome! Remember: RTFM (Read The F*cking Manual) and KISS (Keep It Simple, Stupid!).
 
+### To Do:
+- Prevent write after cancel the letter.
+- Handel Accounting stuff automatically.
+
 ## Screenshots
 
 1. Letter of Guarantee Form View
