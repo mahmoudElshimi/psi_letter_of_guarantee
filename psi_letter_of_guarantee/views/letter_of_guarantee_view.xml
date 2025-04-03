@@ -42,8 +42,8 @@
 			<group>
                         <field name="pdf_file" filename="pdf_file_name" widget="binary"/>
 			<field name="tag_ids" widget="many2many_tags" placeholder="Select Tags"/>
-			<field name="created_date" readonly="1"/>
-			<field name="created_by" readonly="1"/>
+			<field name="create_date" readonly="1"/>
+			<field name="create_uid" readonly="1"/>
 			<field name="canceled_by" readonly="1" invisible="state != 'canceled'"/> 
                         <field name="description"/>
 			</group>
@@ -91,8 +91,8 @@
             <field name="state" string="State"/>
             <field name="log_type" string="Type"/>
             <field name="tag_ids" string="Tags"/>
-            <field name="created_date" string="Created Date"/>
-            <field name="created_by" string="Created By"/>
+            <field name="create_date" string="Created Date"/>
+            <field name="create_uid" string="Created By"/>
             <field name="canceled_by" string="Canceled By"/>
             
             <!-- Predefined Filters -->
@@ -119,9 +119,9 @@
                 <filter string="Bank Feedback" name="group_by_feedback" context="{'group_by': 'feedback'}"/>
                 <filter string="Type" name="group_by_type" context="{'group_by': 'log_type'}"/>
                 <filter string="Tags" name="group_by_tags" context="{'group_by': 'tag_ids'}"/>
-                <filter string="Created By" name="group_by_created_by" context="{'group_by': 'created_by'}"/>
+                <filter string="Created By" name="group_by_create_uid" context="{'group_by': 'create_uid'}"/>
                 <filter string="Canceled By" name="group_by_canceled_by" context="{'group_by': 'canceled_by'}"/>
-                <filter string="Created Date" name="group_by_created_date" context="{'group_by': 'created_date'}"/>
+                <filter string="Created Date" name="group_by_create_date" context="{'group_by': 'create_date'}"/>
                 <filter string="Issue Date" name="group_by_issue_date" context="{'group_by': 'issue_date'}"/>
                 <filter string="Expiry Date" name="group_by_expiry_date" context="{'group_by': 'expiry_date'}"/>
             </group>

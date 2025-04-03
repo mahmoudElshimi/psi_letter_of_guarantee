@@ -30,15 +30,6 @@ class LetterOfGuarantee(models.Model):
     amount = fields.Float(string="Amount", required=True, tracking=True)
     issuance_fees = fields.Float(string="Issuance Fess", required=True, tracking=True)
     interest = fields.Float(string="Interest", required=True, tracking=True)
-    created_date = fields.Date(
-        string="Created Date", default=fields.Date.today, readonly=True
-    )
-    created_by = fields.Many2one(
-        "res.users",
-        string="Created By",
-        default=lambda self: self.env.user,
-        readonly=True,
-    )
 
     canceled_by = fields.Many2one(
         "res.users",
