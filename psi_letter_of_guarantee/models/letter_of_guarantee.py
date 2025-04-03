@@ -11,14 +11,18 @@ class LetterOfGuarantee(models.Model):
         ("unique_name", "unique(name)", "The Reference (name) must be unique.")
     ]
 
-    partner_id = fields.Many2one("res.partner", string="Partner", required=True, ondelete="restrict")
-    journal_id = fields.Many2one("account.journal", string="Journal", required=True, ondelete="restrict")
+    partner_id = fields.Many2one(
+        "res.partner", string="Partner", required=True, ondelete="restrict"
+    )
+    journal_id = fields.Many2one(
+        "account.journal", string="Journal", required=True, ondelete="restrict"
+    )
     bank_id = fields.Many2one(
         "res.bank",
         string="Bank",
         related="journal_id.bank_id",
         readonly=True,
-        store=True,  
+        store=True,
         ondelete="restrict",
     )
 
@@ -37,7 +41,7 @@ class LetterOfGuarantee(models.Model):
     issue_date = fields.Date(string="Issue Date", required=True, tracking=True)
     expiry_date = fields.Date(string="Expiry Date", required=True, tracking=True)
     status = fields.Selection(
-        [("active", "Active"), ("expired", "Expired")],
+        [("active", "Active"), ("expired", "Expired"), ("canceled", "Canceled")],
         string="Status",
         default="active",
         compute="_compute_status",
@@ -103,26 +107,20 @@ class LetterOfGuarantee(models.Model):
     @api.depends("expiry_date")
     def _compute_status(self):
         for record in self:
-            if record.expiry_date and record.expiry_date <= fields.Date.today():
+            if record.status == "canceled":
+                pass
+            elif record.expiry_date and record.expiry_date <= fields.Date.today() and record.status != "canceled":
                 record.status = "expired"
             else:
                 record.status = "active"
 
-    @api.constrains("amount")
+    @api.constrains("amount", "issuance_fees", "interest")
     def _check_amount(self):
         for record in self:
             if record.amount <= 0:
                 raise ValidationError("The amount must be greater than zero.")
-
-    @api.constrains("issuance_fees")
-    def _check_amount(self):
-        for record in self:
             if record.issuance_fees <= 0:
                 raise ValidationError("The fees must be greater than zero.")
-
-    @api.constrains("interest")
-    def _check_amount(self):
-        for record in self:
             if record.interest <= 0:
                 raise ValidationError("The interest must be greater than zero.")
 
@@ -137,4 +135,3 @@ class LetterOfGuarantee(models.Model):
                 raise ValidationError(
                     "The Expiry Date must be later than the Issue Date."
                 )
-
