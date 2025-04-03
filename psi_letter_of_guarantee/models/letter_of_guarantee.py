@@ -1,3 +1,4 @@
+import time
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
@@ -8,7 +9,7 @@ class LetterOfGuarantee(models.Model):
 
     name = fields.Char(string="Reference", required=True, tracking=True)
     _sql_constraints = [
-        ("unique_name", "unique(name)", "The Reference (name) must be unique.")
+        ("unique_name", "unique(name)", "The Reference must be unique.")
     ]
 
     partner_id = fields.Many2one(
@@ -94,7 +95,7 @@ class LetterOfGuarantee(models.Model):
         if default is None:
             default = {}
         # Clear the "name" and "canceled_by" for the duplicate
-        default["name"] = ""
+        default["name"] = int(time.time()) 
         default["canceled_by"] = None
         return super(LetterOfGuarantee, self).copy(default)
 
@@ -129,6 +130,7 @@ class LetterOfGuarantee(models.Model):
                 record.state = "expired"
             else:
                 record.state = "active"
+
 
     @api.constrains("amount", "issuance_fees", "interest")
     def _check_value(self):
