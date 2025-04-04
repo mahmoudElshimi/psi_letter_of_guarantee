@@ -96,6 +96,14 @@ class LetterOfGuarantee(models.Model):
                 "state": "canceled",
                 "canceled_by": self.env.user.id, 
             })
+    from odoo.exceptions import ValidationError
+
+    def write(self, vals):
+        for record in self:
+            if record.state == "canceled":
+                raise ValidationError("You cannot modify a canceled Letter of Guarantee.")
+        return super(LetterOfGuarantee, self).write(vals)
+
 
 
     @api.onchange("journal_id")
