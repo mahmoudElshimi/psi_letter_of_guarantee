@@ -14,7 +14,7 @@ This module is designed to streamline the management of letters of guarantee in 
 This module is actively being developed and improved. Contributions, feedback, and suggestions are highly welcome! Remember: RTFM (Read The F*cking Manual) and KISS (Keep It Simple, Stupid!).
 
 ### To Do:
-- Prevent write after cancel the letter.
+- Prevent write after cancel the letter. Done As Per: #603f330
 - Handel Accounting stuff automatically.
 
 ## Screenshots
