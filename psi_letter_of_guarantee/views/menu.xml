@@ -1,10 +1,7 @@
 <odoo>
-<odoo>
-    <!-- Root Menu -->
+    <!-- Root Menu /* Hidden */ -->
     <menuitem id="menu_letter_of_guarantee_main" name="LOG" sequence="10"/>
 
-    <!-- Submenu -->
-    <menuitem id="menu_letter_of_guarantee" name="Letters of Guarantee" parent="menu_letter_of_guarantee_main" sequence="1" action="action_letter_of_guarantee"/>
+    <menuitem id="menu_letter_of_guarantee" name="Letters of Guarantee" parent="account.menu_finance" sequence="4" action="action_letter_of_guarantee"/>
 </odoo>
 
-</odoo>
