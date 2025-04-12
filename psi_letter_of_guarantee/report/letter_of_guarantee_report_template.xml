@@ -52,7 +52,7 @@
                                     </tr>
                                     <tr style="border: 1px solid #ddd;">
                                         <td style="padding: 8px;"><strong>Status</strong></td>
-                                        <td style="padding: 8px;"><t t-esc="doc.status" /></td>
+                                        <td style="padding: 8px;"><t t-esc="doc.state" /></td>
                                     </tr>
                                     <tr style="border: 1px solid #ddd;">
                                         <td style="padding: 8px;"><strong>Feedback</strong></td>
@@ -78,11 +78,11 @@
 
                                 <tr style="border: 1px solid #ddd;">
                                     <td style="padding: 8px;"><strong>Created By</strong></td>
-                                    <td style="padding: 8px;"><t t-esc="doc.created_by.name" /></td>
+                                    <td style="padding: 8px;"><t t-esc="doc.create_uid.name" /></td>
                                 </tr>
                                 <tr style="border: 1px solid #ddd;">
                                     <td style="padding: 8px;"><strong>Created Date</strong></td>
-                                    <td style="padding: 8px;"><t t-esc="doc.created_date" /></td>
+                                    <td style="padding: 8px;"><t t-esc="doc.create_date" /></td>
                                 </tr>
                                 </table>
                             </t>
@@ -109,7 +109,7 @@
 					    <td style="padding: 8px;"><t t-esc="doc.journal_id.bank_id.name or 'N/A'" /></td>
 					    <td style="padding: 8px;"><t t-esc="doc.bank_account_id.display_name or 'N/A'" /></td>
                                             <td style="padding: 8px;"><t t-esc="doc.expiry_date" /></td>
-                                            <td style="padding: 8px;"><t t-esc="doc.status" /></td>
+                                            <td style="padding: 8px;"><t t-esc="doc.state" /></td>
                                         </tr>
                                     </t>
                                 </tbody>

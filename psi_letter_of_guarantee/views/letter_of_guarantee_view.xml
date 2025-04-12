@@ -42,6 +42,7 @@
 			<field name="create_uid" readonly="1"/>
 			<field name="canceled_by" readonly="1" invisible="state != 'canceled'"/> 
                         <field name="description"/>
+			<field name="active" invisible="1"/>
 		    </group>
                 </sheet>
 		<chatter/>
@@ -92,7 +93,7 @@
             <field name="create_uid" string="Created By"/>
             <field name="canceled_by" string="Canceled By"/>
             
-            <!-- Predefined Filters -->
+            <!-- Filters -->
             <filter string="Active Guarantees" name="filter_active" domain="[('state', '=', 'active')]"/>
             <filter string="Expired Guarantees" name="filter_expired" domain="[('state', '=', 'expired')]"/>
             <filter string="Canceled Guarantees" name="filter_canceled" domain="[('state', '=', 'canceled')]"/>
@@ -103,8 +104,9 @@
             <filter string="Final Type" name="filter_final" domain="[('log_type', '=', 'final')]"/>
             <filter string="Tags Available" name="filter_with_tags" domain="[('tag_ids', '!=', False)]"/>
             <filter string="No Tags" name="filter_no_tags" domain="[('tag_ids', '=', False)]"/>
+            <filter string="Archived Guarantees" name="filter_archived" domain="[('active', '=', False)]"/>
             
-            <!-- Group By Options -->
+            <!-- Group By -->
             <group expand="1" string="Group By">
                 <filter string="Reference" name="group_by_name" context="{'group_by': 'name'}"/>
                 <filter string="Partner" name="group_by_partner" context="{'group_by': 'partner_id'}"/>

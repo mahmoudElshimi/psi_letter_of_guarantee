@@ -9,6 +9,7 @@ class LetterOfGuarantee(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
 
     name = fields.Char(string="Reference", required=True, tracking=True)
+    active = fields.Boolean(default=True)
     _sql_constraints = [
         ("unique_name", "unique(name)", "The Reference must be unique.")
     ]
