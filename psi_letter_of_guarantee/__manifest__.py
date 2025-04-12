@@ -5,7 +5,7 @@
     "description": "A fully-featured module to manage letters of guarantee in the system.",
     "author": "Mahmoud ElShimi",
     "website": "mailto:mahmoudelshimi@protonmail.ch",
-    "depends": ["base", "account"],
+    "depends": ["base", "account", "mail"],
     "license": "Other proprietary",  # See LICENSE(MIT/X) File in the same dir.
     "images": [
         "static/description/banner.png",

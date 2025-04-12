@@ -5,7 +5,8 @@ from odoo.exceptions import ValidationError
 
 class LetterOfGuarantee(models.Model):
     _name = "letter.of.guarantee"
-    _description = "Letter of Guarantee"
+    _description = "Letter Of Guarantee"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
 
     name = fields.Char(string="Reference", required=True, tracking=True)
     _sql_constraints = [
@@ -13,10 +14,10 @@ class LetterOfGuarantee(models.Model):
     ]
 
     partner_id = fields.Many2one(
-        "res.partner", string="Partner", required=True, ondelete="restrict"
+        "res.partner", string="Partner", required=True, ondelete="restrict", tracking=True
     )
     journal_id = fields.Many2one(
-        "account.journal", string="Journal", required=True, ondelete="restrict"
+        "account.journal", string="Journal", required=True, ondelete="restrict", tracking=True
     )
     bank_id = fields.Many2one(
         "res.bank",
@@ -57,16 +58,18 @@ class LetterOfGuarantee(models.Model):
         required=True,
         string="Bank Feedback",
         default="under_examination",
+        tracking=True, 
     )
     log_type = fields.Selection(
         [("primary", "Primary"), ("final", "Final")],
         required=True,
         string="Type",
         default="primary",
+        tracking=True, 
     )
-    description = fields.Text(string="Description")
-    tag_ids = fields.Many2many("log.tag", string="Tags")
-    pdf_file = fields.Binary(string="PDF File")
+    description = fields.Text(string="Description", tracking=True)
+    tag_ids = fields.Many2many("log.tag", string="Tags", tracking=True)
+    pdf_file = fields.Binary(string="PDF File", tracking=True)
     bank_account_id = fields.Many2one(
         "res.partner.bank",
         string="Bank Account",

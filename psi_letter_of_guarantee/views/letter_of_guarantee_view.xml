@@ -24,11 +24,9 @@
                     <group>
                         <field name="partner_id" widget="many2one_tags"/>
 			<field name="journal_id" widget="many2one_tags" domain="[('type', '=', 'bank')]" string="Journal"/>
-			<field name="bank_id" readonly="1" string="Bank"/>
-			<!-- Bank Account Field -->
-                        <field name="bank_account_id" readonly="1" visibility="invisible_if:journal_id == False"/>
-                        <!-- Default Account Field -->
-                        <field name="default_account_id" readonly="1" visibility="invisible_if:journal_id == False" string="Account"/>
+			<field name="bank_id" readonly="1" invisible="bank_id == False" string="Bank"/>
+                        <field name="bank_account_id" readonly="1" invisible="bank_account_id == False"/>
+                        <field name="default_account_id" readonly="1" invisible="journal_id == False" string="Account"/>
                         <field name="amount"  decoration-danger="amount &lt; 1"/>
                         <field name="interest"  decoration-danger="amount &lt; 1"/>
                         <field name="issuance_fees"  decoration-danger="amount &lt; 1"/>
@@ -36,18 +34,17 @@
                         <field name="issue_date"/>
                         <field name="expiry_date"/>
                         <field name="log_type"/>
-                    </group>
-                </sheet>
-                <sheet>
-			<group>
+		    </group>
+		    <group>
                         <field name="pdf_file" filename="pdf_file_name" widget="binary"/>
 			<field name="tag_ids" widget="many2many_tags" placeholder="Select Tags"/>
 			<field name="create_date" readonly="1"/>
 			<field name="create_uid" readonly="1"/>
 			<field name="canceled_by" readonly="1" invisible="state != 'canceled'"/> 
                         <field name="description"/>
-			</group>
+		    </group>
                 </sheet>
+		<chatter/>
             </form>
         </field>
     </record>
