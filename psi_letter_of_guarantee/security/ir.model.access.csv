@@ -2,4 +2,5 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_letter_of_guarantee_user,access_letter_of_guarantee,model_letter_of_guarantee,account.group_account_user,1,0,1,0
 access_letter_of_guarantee_manager,access_letter_of_guarantee,model_letter_of_guarantee,account.group_account_manager,1,1,1,1
 access_log_tag,access_log_tag,model_log_tag,,1,1,1,0
+access_confirmation_wizard,access_confirmation_wizard,model_confirmation_wizard,,1,1,1,1
 

@@ -12,6 +12,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "wizard/confirmation_wizard.xml",
         "views/letter_of_guarantee_view.xml",
         "views/menu.xml",
         "report/letter_of_guarantee_report_template.xml",

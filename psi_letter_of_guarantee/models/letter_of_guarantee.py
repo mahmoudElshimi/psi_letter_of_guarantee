@@ -105,7 +105,7 @@ class LetterOfGuarantee(models.Model):
     def write(self, vals):
         for record in self:
             if record.state == "canceled":
-                raise ValidationError("You cannot modify a canceled Letter of Guarantee.")
+                raise ValidationError("You cannot modify canceled Letter of Guarantee.")
         return super(LetterOfGuarantee, self).write(vals)
 
 
