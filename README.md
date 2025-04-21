@@ -16,6 +16,7 @@ This module is actively being developed and improved. Contributions, feedback, a
 ### To Do:
 - Prevent write after cancel the letter. Done As Per: #603f330
 - More Enhancing For model's Access Rights.
+- Handel Cancel access rights from backend also.
 - Handel Accounting stuff automatically.
 
 ## Screenshots
