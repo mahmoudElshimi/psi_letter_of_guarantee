@@ -1,4 +1,4 @@
-# Psi Letter of Guarantee Odoo Module
+# Letter of Guarantee Odoo Module
 
 ## Introduction
 
