@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to the Psi Letter of Guarantee Odoo module!
+Welcome to the Letter of Guarantee Odoo module!
 
 This module is designed to streamline the management of letters of guarantee in Odoo. It provides features to handle:
 
